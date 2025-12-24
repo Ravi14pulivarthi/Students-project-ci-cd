@@ -1,0 +1,61 @@
+body {
+  margin: 0;
+  font-family: "Segoe UI", sans-serif;
+  background: #f4f6f8;
+}
+
+.page-center {
+  display: flex;
+  justify-content: center;
+  padding: 40px;
+}
+
+.card {
+  background: #fff;
+  padding: 30px;
+  border-radius: 10px;
+  width: 420px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+}
+
+.card.full {
+  width: 80%;
+}
+
+.details-card p {
+  font-size: 16px;
+  margin: 10px 0;
+}
+
+input {
+  width: 100%;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+button {
+  padding: 8px 14px;
+  margin-right: 8px;
+  cursor: pointer;
+}
+
+button.danger {
+  background: #e74c3c;
+  color: white;
+  border: none;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th, td {
+  padding: 12px;
+  border-bottom: 1px solid #ddd;
+  text-align: left;
+}
+
+.actions {
+  margin-top: 20px;
+}

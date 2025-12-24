@@ -1,0 +1,32 @@
+services:
+  backend:
+    build: ./Backend
+    container_name: student-backend
+    ports:
+      - "5000:5000"
+    env_file:
+      - ./Backend/.env
+    depends_on:
+      - mongodb
+    restart: always
+
+  frontend:
+    build: ./student-frontend
+    container_name: student-frontend
+    ports:
+      - "8080:80"
+    depends_on:
+      - backend
+    restart: always
+
+  mongodb:
+    image: mongo:6
+    container_name: mongodb
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+    restart: always
+
+volumes:
+  mongo_data:
