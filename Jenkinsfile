@@ -2,8 +2,9 @@ pipeline {
   agent any
 
   environment {
-    BACKEND_IMAGE = "student-backend"
-    FRONTEND_IMAGE = "student-frontend"
+    DOCKERHUB_USER = 'your_dockerhub_username'
+    BACKEND_IMAGE = 'student-backend'
+    FRONTEND_IMAGE = 'student-frontend'
   }
 
   stages {
@@ -11,37 +12,31 @@ pipeline {
     stage('Checkout Code') {
       steps {
         git branch: 'main',
-            url: 'https://github.com/Ravi14pulivarthi/StudentCI-CD.git'
+            url: 'https://github.com/yourusername/your-repo.git'
       }
     }
 
-    stage('Docker Login') {
+    stage('Build Images') {
       steps {
-        withCredentials([usernamePassword(
-          credentialsId: 'dockerhub-creds',
-          usernameVariable: 'DOCKER_USER',
-          passwordVariable: 'DOCKER_PASS'
-        )]) {
-          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
-        }
+        sh 'docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE:latest Backend'
+        sh 'docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE:latest student-frontend'
       }
     }
 
-    stage('Build Docker Images') {
+    stage('Security Scan') {
       steps {
-        sh 'docker build -t $DOCKER_USER/student-backend:latest Backend'
-        sh 'docker build -t $DOCKER_USER/student-frontend:latest student-frontend'
+        sh 'trivy image $DOCKERHUB_USER/$BACKEND_IMAGE:latest'
       }
     }
 
-    stage('Push Images to Docker Hub') {
+    stage('Push Images') {
       steps {
-        sh 'docker push $DOCKER_USER/student-backend:latest'
-        sh 'docker push $DOCKER_USER/student-frontend:latest'
+        sh 'docker push $DOCKERHUB_USER/$BACKEND_IMAGE:latest'
+        sh 'docker push $DOCKERHUB_USER/$FRONTEND_IMAGE:latest'
       }
     }
 
-    stage('Deploy Application') {
+    stage('Deploy') {
       steps {
         sh 'docker-compose down'
         sh 'docker-compose up -d'
