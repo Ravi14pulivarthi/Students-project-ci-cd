@@ -8,6 +8,14 @@ pipeline {
   }
 
   stages {
+    // ✅ NEW STAGE ADDED HERE
+    stage('Checkout Code') {
+      steps {
+        git branch: 'main', 
+          url: 'https://github.com/Ravi14pulivarthi/Students-project-ci-cd.git'
+        echo 'Code checkout completed'
+      }
+    }
 
     stage('Docker Login') {
       steps {
@@ -33,6 +41,16 @@ pipeline {
         sh 'docker push $DOCKERHUB_USER/$BACKEND_IMAGE:latest'
         sh 'docker push $DOCKERHUB_USER/$FRONTEND_IMAGE:latest'
       }
+    }
+  }
+  
+  // ✅ Optional: Add post section for notifications
+  post {
+    success {
+      echo '✅ Docker images built and pushed successfully!'
+    }
+    failure {
+      echo '❌ Pipeline failed!'
     }
   }
 }
