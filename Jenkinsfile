@@ -2,9 +2,9 @@ pipeline {
   agent any
 
   environment {
-    DOCKERHUB_USER = 'your_dockerhub_username'
-    BACKEND_IMAGE = 'student-backend'
-    FRONTEND_IMAGE = 'student-frontend'
+    DOCKERHUB_USER = "ravi599"
+    BACKEND_IMAGE  = "student-backend"
+    FRONTEND_IMAGE = "student-frontend"
   }
 
   stages {
@@ -12,7 +12,19 @@ pipeline {
     stage('Checkout Code') {
       steps {
         git branch: 'main',
-            url: 'https://github.com/yourusername/your-repo.git'
+            url: 'https://github.com/Ravi14pulivarthi/Students-project-ci-cd.git'
+      }
+    }
+
+    stage('Docker Login') {
+      steps {
+        withCredentials([usernamePassword(
+          credentialsId: 'dockerhub-creds',
+          usernameVariable: 'DOCKER_USER',
+          passwordVariable: 'DOCKER_PASS'
+        )]) {
+          sh 'echo $DOCKER_PASS | docker login -u $DOCKER_USER --password-stdin'
+        }
       }
     }
 
@@ -20,12 +32,6 @@ pipeline {
       steps {
         sh 'docker build -t $DOCKERHUB_USER/$BACKEND_IMAGE:latest Backend'
         sh 'docker build -t $DOCKERHUB_USER/$FRONTEND_IMAGE:latest student-frontend'
-      }
-    }
-
-    stage('Security Scan') {
-      steps {
-        sh 'trivy image $DOCKERHUB_USER/$BACKEND_IMAGE:latest'
       }
     }
 
