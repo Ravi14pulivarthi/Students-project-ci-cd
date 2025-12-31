@@ -25,7 +25,7 @@ export default function AddStudent() {
 
     if (id) {
       await axios.put(`http://localhost:5000/students/${id}`, form);
-      navigate(`/students/${id}`); // ✅ GO TO DETAILS
+      navigate(`/students/${id}`); 
     } else {
       await axios.post("http://localhost:5000/students", form);
       navigate("/students");

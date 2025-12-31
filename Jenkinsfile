@@ -8,7 +8,7 @@ pipeline {
   }
 
   stages {
-    // ✅ NEW STAGE ADDED HERE
+    //  NEW STAGE ADDED HERE
     stage('Checkout Code') {
       steps {
         git branch: 'main', 
@@ -44,13 +44,13 @@ pipeline {
     }
   }
   
-  // ✅ Optional: Add post section for notifications
+  // Optional: Add post section for notifications
   post {
     success {
-      echo '✅ Docker images built and pushed successfully!'
+      echo ' Docker images built and pushed successfully!'
     }
     failure {
-      echo '❌ Pipeline failed!'
+      echo ' Pipeline failed!'
     }
   }
 }
