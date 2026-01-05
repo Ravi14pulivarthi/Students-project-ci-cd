@@ -15,7 +15,8 @@ export default function AddStudent() {
 
   useEffect(() => {
     if (id) {
-      axios.get(`http://localhost:5000/students/${id}`)
+      axios.get(`http://3.107.14.27:5000/students/${id}`)
+
         .then(res => setForm(res.data));
     }
   }, [id]);
@@ -24,10 +25,10 @@ export default function AddStudent() {
     e.preventDefault();
 
     if (id) {
-      await axios.put(`http://localhost:5000/students/${id}`, form);
+      await axios.put(`http://3.107.14.27:5000/students/${id}`, form);
       navigate(`/students/${id}`); 
     } else {
-      await axios.post("http://localhost:5000/students", form);
+      await axios.post("http://3.107.14.27:5000/students", form);
       navigate("/students");
     }
   };

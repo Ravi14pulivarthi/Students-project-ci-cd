@@ -7,12 +7,12 @@ export default function StudentList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://localhost:5000/students")
+    axios.get("http://3.107.14.27:5000/students")
       .then(res => setStudents(res.data));
   }, []);
 
   const del = async (id) => {
-    await axios.delete(`http://localhost:5000/students/${id}`);
+    await axios.delete(`http://3.107.14.27:5000/students/${id}`);
     setStudents(students.filter(s => s._id !== id));
   };
 

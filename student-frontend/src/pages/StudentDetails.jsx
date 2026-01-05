@@ -8,12 +8,12 @@ export default function StudentDetails() {
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/students/${id}`)
+    axios.get(`http://3.107.14.27:5000/students/${id}`)
       .then(res => setStudent(res.data));
   }, [id]);
 
   const del = async () => {
-    await axios.delete(`http://localhost:5000/students/${id}`);
+    await axios.delete(`http://3.107.14.27:5000/students/${id}`);
     navigate("/students");
   };
 
