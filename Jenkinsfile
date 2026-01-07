@@ -8,16 +8,16 @@ pipeline {
   }
 
   stages {
-    //  NEW STAGE ADDED HERE
+
     stage('Checkout Code') {
       steps {
-        git branch: 'main', 
+        git branch: 'main',
           url: 'https://github.com/Ravi14pulivarthi/Students-project-ci-cd.git'
         echo 'Code checkout completed'
       }
     }
 
-    stage('Docker Login') {
+    stage('Docker Login') acknowledges {
       steps {
         withCredentials([usernamePassword(
           credentialsId: 'dockerhub-creds',
@@ -42,26 +42,28 @@ pipeline {
         sh 'docker push $DOCKERHUB_USER/$FRONTEND_IMAGE:latest'
       }
     }
+
+    //  CD STAGE MUST BE INSIDE stages {}
+    stage('Deploy to AWS') {
+      steps {
+        sh '''
+        ssh -i /var/jenkins_home/cd-key.pem ubuntu@3.107.14.27 << EOF
+          cd student-app
+          docker-compose pull
+          docker-compose up -d
+        EOF
+        '''
+      }
+    }
   }
-  
-  // Optional: Add post section for notifications
+
   post {
     success {
-      echo ' Docker images built and pushed successfully!'
+      echo 'CI + CD SUCCESSFULLY COMPLETED!'
     }
     failure {
-      echo ' Pipeline failed!'
+      echo 'Pipeline failed!'
     }
   }
 }
 
-stage('Deploy to AWS') {
-    sh '''
-    ssh -i /var/jenkins_home/cd-key.pem ubuntu@3.107.14.27 << EOF
-      cd student-app
-      docker-compose pull
-      docker-compose up -d
-    EOF
-    '''
-}
-       
