@@ -12,12 +12,12 @@ pipeline {
     stage('Checkout Code') {
       steps {
         git branch: 'main',
-          url: 'https://github.com/Ravi14pulivarthi/Students-project-ci-cd.git'
+            url: 'https://github.com/Ravi14pulivarthi/Students-project-ci-cd.git'
         echo 'Code checkout completed'
       }
     }
 
-    stage('Docker Login') acknowledges {
+    stage('Docker Login') {
       steps {
         withCredentials([usernamePassword(
           credentialsId: 'dockerhub-creds',
@@ -43,7 +43,6 @@ pipeline {
       }
     }
 
-    //  CD STAGE MUST BE INSIDE stages {}
     stage('Deploy to AWS') {
       steps {
         sh '''
@@ -66,4 +65,3 @@ pipeline {
     }
   }
 }
-
