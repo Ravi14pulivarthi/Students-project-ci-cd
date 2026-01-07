@@ -54,14 +54,14 @@ pipeline {
     }
   }
 }
+
 stage('Deploy to AWS') {
-    steps {
-        sh '''
-        ssh -i /var/jenkins_home/cd-key.pem ubuntu@3.107.14.27 << EOF
-          cd student-app
-          docker-compose pull
-          docker-compose up -d
-        EOF
-        '''
-    }
+    sh '''
+    ssh -i /var/jenkins_home/cd-key.pem ubuntu@3.107.14.27 << EOF
+      cd student-app
+      docker-compose pull
+      docker-compose up -d
+    EOF
+    '''
 }
+       
