@@ -8,11 +8,13 @@ export default function StudentDetails() {
   const [student, setStudent] = useState(null);
 
   useEffect(() => {
-    axios.get(`http://3.107.14.27:5000/students/${id}`)
-      .then(res => setStudent(res.data));
+    axios
+      .get(`http://3.107.14.27:5000/students/${id}`)
+      .then((res) => setStudent(res.data));
   }, [id]);
 
   const del = async () => {
+    if (!window.confirm("Are you sure you want to delete this student?")) return;
     await axios.delete(`http://3.107.14.27:5000/students/${id}`);
     navigate("/students");
   };
@@ -20,23 +22,34 @@ export default function StudentDetails() {
   if (!student) return null;
 
   return (
-    <div className="page-center">
-      <div className="card details-card">
+    <div className="details-page">
+      <div className="details-card">
+        <img
+          src={student.image || "https://via.placeholder.com/150"}
+          alt="student"
+          className="profile-img"
+        />
+
         <h2>{student.name}</h2>
 
-        <p><b>ID:</b> {student.studentId}</p>
-        <p><b>City:</b> {student.city}</p>
-        <p><b>Class:</b> {student.className}</p>
+        <p className="muted">
+          Complete profile information of the selected student is shown below.
+        </p>
 
-        <div className="actions">
-          {/* EDIT ONLY FROM DETAILS */}
-          <button onClick={() => navigate(`/edit/${id}`)}>
-            Edit
-          </button>
+        <div className="details-grid">
+          <p><b>Student ID:</b> {student.studentId}</p>
+          <p><b>Gender:</b> {student.gender || "—"}</p>
+          <p><b>Date of Birth:</b> {student.dob ? student.dob.slice(0, 10) : "—"}</p>
+          <p><b>Phone:</b> {student.phone || "—"}</p>
+          <p><b>Email:</b> {student.email || "—"}</p>
+          <p><b>Course:</b> {student.course || "—"}</p>
+          <p><b>Fee Status:</b> {student.feeStatus || "—"}</p>
+          <p><b>Status:</b> {student.status || "—"}</p>
+        </div>
 
-          <button className="danger" onClick={del}>
-            Delete
-          </button>
+        <div className="details-actions">
+          <button onClick={() => navigate(`/edit/${id}`)}>Edit</button>
+          <button className="danger" onClick={del}>Delete</button>
         </div>
       </div>
     </div>

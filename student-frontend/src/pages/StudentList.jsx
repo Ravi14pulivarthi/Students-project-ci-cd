@@ -7,58 +7,56 @@ export default function StudentList() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    axios.get("http://3.107.14.27:5000/students")
-      .then(res => setStudents(res.data));
+    axios
+      .get("http://3.107.14.27:5000/students")
+      .then((res) => setStudents(res.data))
+      .catch((err) => console.error(err));
   }, []);
 
   const del = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this student?")) return;
+
     await axios.delete(`http://3.107.14.27:5000/students/${id}`);
-    setStudents(students.filter(s => s._id !== id));
+    setStudents(students.filter((s) => s._id !== id));
   };
 
   return (
-    <div className="page-center">
-      <div className="card full">
-        <h2>Students</h2>
+    <div className="page">
+      <h2>Students Records</h2>
+      <p className="muted">
+        Below is the list of all registered students.
+        You can view, edit, or delete student details.
+      </p>
 
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Name</th>
-              <th>City</th>
-              <th>Actions</th>
-            </tr>
-          </thead>
+      {/* CARD GRID */}
+      <div className="table-wrap">
+        {students.map((s) => (
+          <div className="student-card" key={s._id}>
+            <img
+              src={s.image || "https://via.placeholder.com/150"}
+              alt="student"
+              className="avatar"
+            />
 
-          <tbody>
-            {students.map(s => (
-              <tr key={s._id}>
-                <td>{s.studentId}</td>
-                <td>{s.name}</td>
-                <td>{s.city}</td>
-                <td>
-                  {/* BOTH go to DETAILS */}
-                  <button onClick={() => navigate(`/students/${s._id}`)}>
-                    View
-                  </button>
+            <div className="card-name">{s.name}</div>
+            <div className="card-id">ID: {s.studentId}</div>
+            <div className="card-course">
+              Course: {s.course || "—"}
+            </div>
 
-                  <button onClick={() => navigate(`/students/${s._id}`)}>
-                    Edit
-                  </button>
-
-                  <button
-                    className="danger"
-                    onClick={() => del(s._id)}
-                  >
-                    Delete
-                  </button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-
+            <div className="card-actions">
+              <button onClick={() => navigate(`/students/${s._id}`)}>
+                View
+              </button>
+              <button onClick={() => navigate(`/edit/${s._id}`)}>
+                Edit
+              </button>
+              <button className="danger" onClick={() => del(s._id)}>
+                Delete
+              </button>
+            </div>
+          </div>
+        ))}
       </div>
     </div>
   );

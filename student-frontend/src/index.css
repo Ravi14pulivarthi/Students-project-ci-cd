@@ -1,61 +1,333 @@
+/* ================== GLOBAL ================== */
+* {
+  box-sizing: border-box;
+}
+
 body {
   margin: 0;
-  font-family: "Segoe UI", sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
   background: #f4f6f8;
 }
 
-.page-center {
+/* =========================================================
+   ================== LANDING PAGE =========================
+   ========================================================= */
+
+.landing-bg {
+  min-height: 100vh;
+  position: relative;
+  background:
+    linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
+    url("https://images.unsplash.com/photo-1524995997946-a1c2e315a42f");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+}
+
+/* Navbar */
+.navbar {
   display: flex;
-  justify-content: center;
-  padding: 40px;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
 }
 
-.card {
-  background: #fff;
-  padding: 30px;
-  border-radius: 10px;
-  width: 420px;
-  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+.nav-logo {
+  font-size: 20px;
+  font-weight: bold;
 }
 
-.card.full {
-  width: 80%;
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 24px;
 }
 
-.details-card p {
-  font-size: 16px;
-  margin: 10px 0;
+/* Hero */
+.hero-content {
+  max-width: 760px;
+  margin: 140px auto 0;
+  text-align: center;
 }
 
-input {
-  width: 100%;
-  padding: 10px;
-  margin: 10px 0;
+.hero-content h1 {
+  font-size: 44px;
 }
 
-button {
-  padding: 8px 14px;
-  margin-right: 8px;
+.hero-actions {
+  position: absolute;
+   left: 50%;
+  bottom: 120px;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 22px;
+}
+
+.hero-actions button {
+  padding: 14px 34px;
+  background: #2563eb;
+  color: #fff;
+  border-radius: 999px;
+  border: none;
   cursor: pointer;
 }
 
-button.danger {
-  background: #e74c3c;
-  color: white;
-  border: none;
+/* =========================================================
+   ================== ADD STUDENT PAGE =====================
+   ========================================================= */
+
+.form-bg {
+  min-height: 100vh;
+  background:
+    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-table {
+.student-form {
+  background: #ffffff;
+  max-width: 650px;
+  padding: 30px;
+  border-radius: 14px;
+  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+}
+
+.form-grid input,
+.form-grid select {
+  padding: 11px;
+  border-radius: 7px;
+  border: 1px solid #d1d5db;
+}
+
+.submit-btn {
   width: 100%;
-  border-collapse: collapse;
+  margin-top: 20px;
+  padding: 13px;
+  background: #2563eb;
+  color: #fff;
+  border: none;
+  border-radius: 7px;
 }
 
-th, td {
-  padding: 12px;
-  border-bottom: 1px solid #ddd;
+/* =========================================================
+   ================== STUDENT LIST PAGE ====================
+   ========================================================= */
+
+.page {
+  padding: 40px;
+}
+
+.page h2 {
+  text-align: center;
+  margin-bottom: 6px;
+}
+
+.page .muted {
+  text-align: center;
+  color: #6b7280;
+  margin-bottom: 30px;
+}
+
+/* Grid – 3 cards per row */
+.table-wrap {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+/* ===== Student Rectangle Box ===== */
+.student-card {
+  background: #ffffff;
+  border-radius: 6px;                 /* RECTANGLE look */
+  padding: 24px;
+  text-align: center;
+  box-shadow: 0 6px 14px rgba(0,0,0,0.12);
+  border: 1px solid #e5e7eb;
+  transition: box-shadow 0.2s ease;
+}
+
+.student-card:hover {
+  box-shadow: 0 10px 22px rgba(0,0,0,0.18);
+}
+
+/* Student image */
+.avatar {
+  width: 85px;
+  height: 85px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-bottom: 12px;
+  border: 2px solid #c7d2fe;
+  background: #f1f5f9;
+}
+
+/* Text */
+.card-name {
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.card-id,
+.card-course {
+  font-size: 13px;
+  color: #6b7280;
+  margin-bottom: 3px;
+}
+
+/* ===== Buttons ===== */
+.card-actions {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+}
+
+/* View – light blue */
+.card-actions button {
+  padding: 7px 14px;
+  font-size: 13px;
+  border-radius: 4px;     /* rectangle buttons */
+  border: none;
+  cursor: pointer;
+}
+
+/* View */
+.card-actions button:nth-child(1) {
+  background: #e0f2fe;
+  color: #0369a1;
+}
+
+/* Edit */
+.card-actions button:nth-child(2) {
+  background: #ecfeff;
+  color: #0f766e;
+}
+
+/* Delete */
+.card-actions .danger {
+  background: #fee2e2;
+  color: #b91c1c;
+}
+
+.card-actions button:hover {
+  opacity: 0.9;
+}
+
+/* =========================================================
+   ================== RESPONSIVE ===========================
+   ========================================================= */
+
+@media (max-width: 1000px) {
+  .table-wrap {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .table-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .page {
+    padding: 20px;
+  }
+}
+
+/* =========================================================
+   ================== STUDENT DETAILS PAGE =================
+   ========================================================= */
+
+.details-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 40px 20px;
+  background: #f4f6f8;
+}
+
+/* Big box */
+.details-card {
+  background: #ffffff;
+  width: 100%;
+  max-width: 700px;
+  padding: 30px;
+  border-radius: 8px;        /* rectangle look */
+  box-shadow: 0 12px 30px rgba(0,0,0,0.18);
+  text-align: center;
+}
+
+/* Profile image */
+.profile-img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #2563eb;
+  margin-bottom: 14px;
+}
+
+/* Name */
+.details-card h2 {
+  margin-bottom: 6px;
+}
+
+/* Info grid */
+.details-grid {
+  margin-top: 20px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 12px 20px;
   text-align: left;
 }
 
-.actions {
-  margin-top: 20px;
+.details-grid p {
+  font-size: 14px;
+  color: #513c37;
 }
+
+/* Actions */
+.details-actions {
+  margin-top: 26px;
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+}
+
+.details-actions button {
+  padding: 8px 20px;
+  border-radius: 4px;
+  border: none;
+  background: #2563eb;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.details-actions button:hover {
+  opacity: 0.9;
+}
+
+.details-actions .danger {
+  background: #ef4444;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+
