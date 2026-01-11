@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 
-const studentRoutes = require("./routes/student.routes"); //  FIX
+const studentRoutes = require("./routes/student.routes");
+
 
 const app = express();
 
