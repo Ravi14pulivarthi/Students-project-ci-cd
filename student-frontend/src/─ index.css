@@ -1,4 +1,4 @@
-/* ================== GLOBAL ================== */
+/* ================= GLOBAL ================= */
 * {
   box-sizing: border-box;
 }
@@ -10,9 +10,12 @@ body {
   color: #111827;
 }
 
-/* =========================================================
-   ================== LANDING PAGE =========================
-   ========================================================= */
+html, body {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+/* ================= LANDING PAGE ================= */
 
 .landing-bg {
   min-height: 100vh;
@@ -25,97 +28,62 @@ body {
   color: #ffffff;
 }
 
-/* Navbar */
 .navbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 18px 40px;
+  padding: 18px 24px;
 }
 
-.nav-logo {
-  font-size: 20px;
-  font-weight: bold;
-}
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 24px;
-}
-
-.nav-links li {
-  cursor: pointer;
-  font-size: 14px;
-}
-
-/* Hero */
 .hero-content {
   max-width: 760px;
-  margin: 140px auto 0;
+  margin: 120px auto 0;
   text-align: center;
-  padding: 20px;
+  padding: 0 16px;
 }
 
 .hero-content h1 {
-  font-size: 44px;
-  margin-bottom: 10px;
+  font-size: 36px;
 }
 
-.hero-sub {
-  font-size: 18px;
-  margin-bottom: 12px;
-}
-
-.hero-desc {
-  font-size: 15px;
-  opacity: 0.9;
-}
-
-/* Hero buttons */
 .hero-actions {
-  position: absolute;
-  left: 50%;
-  bottom: 120px;
-  transform: translateX(-50%);
   display: flex;
-  gap: 22px;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 30px;
 }
 
 .hero-actions button {
-  padding: 14px 34px;
-  font-size: 15px;
+  padding: 14px 28px;
   background: #2563eb;
-  color: #ffffff;
-  border: none;
+  color: #fff;
   border-radius: 999px;
+  border: none;
   cursor: pointer;
 }
 
-/* =========================================================
-   ================== ADD STUDENT PAGE =====================
-   ========================================================= */
+/* ================= ADD / EDIT STUDENT ================= */
 
 .form-bg {
   min-height: 100vh;
   background:
-    linear-gradient(rgba(0,0,0,0.55), rgba(0,0,0,0.55)),
+    linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     url("https://images.unsplash.com/photo-1523050854058-8df90110c9f1");
   background-size: cover;
   background-position: center;
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 30px;
+  padding: 16px;
 }
 
 .student-form {
   background: #ffffff;
   width: 100%;
-  max-width: 650px;
-  padding: 30px;
-  border-radius: 12px;
-  box-shadow: 0 20px 45px rgba(0,0,0,0.35);
+  max-width: 680px;
+  padding: 24px;
+  border-radius: 10px;
+  box-shadow: 0 18px 40px rgba(0,0,0,0.35);
 }
 
 .student-form h2 {
@@ -127,7 +95,7 @@ body {
   text-align: center;
   font-size: 14px;
   color: #6b7280;
-  margin-bottom: 22px;
+  margin-bottom: 20px;
 }
 
 .form-grid {
@@ -138,7 +106,8 @@ body {
 
 .form-grid input,
 .form-grid select {
-  padding: 11px;
+  width: 100%;
+  padding: 12px;
   font-size: 14px;
   border-radius: 6px;
   border: 1px solid #d1d5db;
@@ -151,7 +120,7 @@ body {
 .submit-btn {
   margin-top: 22px;
   width: 100%;
-  padding: 13px;
+  padding: 14px;
   background: #2563eb;
   color: #ffffff;
   font-size: 15px;
@@ -160,63 +129,36 @@ body {
   cursor: pointer;
 }
 
-/* =========================================================
-   ================== STUDENT LIST PAGE ====================
-   ========================================================= */
+/* ================= STUDENT LIST ================= */
 
 .page {
-  padding: 40px;
+  padding: 24px;
 }
 
-.page h2 {
-  text-align: center;
-}
-
-.page .muted {
-  text-align: center;
-  color: #6b7280;
-  margin-bottom: 30px;
-}
-
-/* Grid – 3 cards */
 .table-wrap {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: 20px;
 }
 
-/* Rectangle card */
 .student-card {
   background: #ffffff;
   border-radius: 6px;
-  padding: 24px;
+  padding: 22px;
   text-align: center;
   border: 1px solid #e5e7eb;
   box-shadow: 0 6px 14px rgba(0,0,0,0.12);
 }
 
-/* Student image */
 .avatar {
-  width: 85px;
-  height: 85px;
+  width: 80px;
+  height: 80px;
   border-radius: 50%;
   object-fit: cover;
   border: 2px solid #c7d2fe;
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
-.card-name {
-  font-size: 15px;
-  font-weight: 600;
-}
-
-.card-id,
-.card-course {
-  font-size: 13px;
-  color: #6b7280;
-}
-
-/* Buttons */
 .card-actions {
   margin-top: 16px;
   display: flex;
@@ -226,114 +168,47 @@ body {
 
 .card-actions button {
   padding: 7px 14px;
-  font-size: 13px;
   border-radius: 4px;
   border: none;
   cursor: pointer;
 }
 
-/* View */
-.card-actions button:nth-child(1) {
-  background: #e0f2fe;
-  color: #0369a1;
-}
-
-/* Edit */
-.card-actions button:nth-child(2) {
-  background: #ecfeff;
-  color: #0f766e;
-}
-
-/* Delete */
-.card-actions .danger {
-  background: #fee2e2;
-  color: #b91c1c;
-}
-
-/* =========================================================
-   ================== STUDENT DETAILS PAGE =================
-   ========================================================= */
+/* ================= STUDENT DETAILS ================= */
 
 .details-page {
   min-height: 100vh;
   display: flex;
   justify-content: center;
-  align-items: center;
-  padding: 40px 20px;
+  padding: 20px;
 }
 
 .details-card {
   background: #ffffff;
   max-width: 700px;
   width: 100%;
-  padding: 32px;
+  padding: 24px;
   border-radius: 8px;
   box-shadow: 0 12px 30px rgba(0,0,0,0.18);
-  text-align: center;
-}
-
-.profile-img {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 3px solid #2563eb;
-  margin-bottom: 14px;
 }
 
 .details-grid {
   margin-top: 20px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 12px 20px;
-  text-align: left;
+  gap: 12px;
 }
 
-.details-actions {
-  margin-top: 26px;
-  display: flex;
-  justify-content: center;
-  gap: 14px;
-}
-
-.details-actions button {
-  padding: 8px 20px;
-  border-radius: 4px;
-  border: none;
-  background: #2563eb;
-  color: #ffffff;
-  cursor: pointer;
-}
-
-.details-actions .danger {
-  background: #ef4444;
-}
-
-/* =========================================================
-   ================== RESPONSIVE ===========================
-   ========================================================= */
-
-@media (max-width: 1000px) {
-  .table-wrap {
-    grid-template-columns: repeat(2, 1fr);
-  }
-}
+/* ================= MOBILE ================= */
 
 @media (max-width: 768px) {
   .form-grid {
     grid-template-columns: 1fr;
   }
 
-  .hero-content h1 {
-    font-size: 30px;
+  .form-grid input[type="file"] {
+    grid-column: span 1;
   }
 
-  .nav-links {
-    display: none;
-  }
-}
-
-@media (max-width: 600px) {
   .table-wrap {
     grid-template-columns: 1fr;
   }
@@ -342,7 +217,7 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .page {
-    padding: 20px;
+  .hero-content h1 {
+    font-size: 26px;
   }
 }

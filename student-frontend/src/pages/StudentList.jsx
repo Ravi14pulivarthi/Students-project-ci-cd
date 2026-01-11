@@ -23,17 +23,17 @@ export default function StudentList() {
   return (
     <div className="page">
       <h2>Students Records</h2>
-      <p className="muted">
-        Below is the list of all registered students.
-        You can view, edit, or delete student details.
-      </p>
+      <p className="muted">View, edit or delete students</p>
 
-      {/* CARD GRID */}
       <div className="table-wrap">
         {students.map((s) => (
           <div className="student-card" key={s._id}>
             <img
-              src={s.image || "https://via.placeholder.com/150"}
+              src={
+                s.image
+                  ? `http://3.107.14.27:5000/uploads/${s.image}`
+                  : "https://via.placeholder.com/150"
+              }
               alt="student"
               className="avatar"
             />

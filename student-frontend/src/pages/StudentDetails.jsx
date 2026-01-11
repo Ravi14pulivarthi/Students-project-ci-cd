@@ -10,7 +10,8 @@ export default function StudentDetails() {
   useEffect(() => {
     axios
       .get(`http://3.107.14.27:5000/students/${id}`)
-      .then((res) => setStudent(res.data));
+      .then((res) => setStudent(res.data))
+      .catch((err) => console.error(err));
   }, [id]);
 
   const del = async () => {
@@ -19,31 +20,32 @@ export default function StudentDetails() {
     navigate("/students");
   };
 
-  if (!student) return null;
+  if (!student) {
+    return <p style={{ textAlign: "center" }}>Loading...</p>;
+  }
 
   return (
     <div className="details-page">
       <div className="details-card">
         <img
-          src={student.image || "https://via.placeholder.com/150"}
+          src={
+            student.image
+              ? `http://3.107.14.27:5000/uploads/${student.image}`
+              : "https://via.placeholder.com/150"
+          }
           alt="student"
           className="profile-img"
         />
 
         <h2>{student.name}</h2>
-
-        <p className="muted">
-          Complete profile information of the selected student is shown below.
-        </p>
+        <p className="muted">Student complete details</p>
 
         <div className="details-grid">
           <p><b>Student ID:</b> {student.studentId}</p>
           <p><b>Gender:</b> {student.gender || "—"}</p>
-          <p><b>Date of Birth:</b> {student.dob ? student.dob.slice(0, 10) : "—"}</p>
           <p><b>Phone:</b> {student.phone || "—"}</p>
           <p><b>Email:</b> {student.email || "—"}</p>
           <p><b>Course:</b> {student.course || "—"}</p>
-          <p><b>Fee Status:</b> {student.feeStatus || "—"}</p>
           <p><b>Status:</b> {student.status || "—"}</p>
         </div>
 
